@@ -12,7 +12,7 @@
      let [extra, Setextra] = useState([]);  
  
      let car_axios = async () => { 
-         let url = 'http://data.ex.co.kr/openapi/trafficapi/nationalTrafficVolumn?key=4652599945&type=json&sumDate=20220310';
+         let url = 'http://data.ex.co.kr/openapi/trafficapi/nationalTrafficVolumn?key=발급받은키&type=json&sumDate=20220310';
          let {data : {list}} = await axios.get(url);
          let list_splice = list.splice(0, 15);
       //   console.log(list_splice);
