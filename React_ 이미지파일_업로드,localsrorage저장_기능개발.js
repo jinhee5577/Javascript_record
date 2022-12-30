@@ -4,7 +4,6 @@ import React, { useEffect, useState, useRef, } from 'react';
 function Client (){
     let imgRef = useRef();
     let imgURL;
-    let profile; 
     
     let loadImg = (e) => { 
         if(!e.target.files[0]){ 
@@ -20,26 +19,28 @@ function Client (){
     
     let IMGsave = () => {  // 저장버튼 눌렀을때.
         localStorage.setItem('profile', JSON.stringify(imgURL));  // localStorage에 이미지URL을 profile키에 저장하고,
-        profile = localStorage.getItem('profile');   // 다시 localStorage에서 img데이터 꺼내와서 변수에 저장해준다.
-        
-        if(profile == 'undefined'){  // undefined일때 
+        const profile = localStorage.getItem('profile');   // 다시 localStorage에서 img데이터 꺼내와서 변수에 저장해준다.
+        const isVaild = JSON.parse(profile);
+
+        if(!isVaild){  // undefined일때 
            console.log('o');
            window.alert('이미지를 선택해 주세요.');  
            return;  // 저장된 이미지가 없을 경우 함수를 끝낸다.  
         } 
 
-        imgRef.current.setAttribute('src', JSON.parse(profile)); 
+        imgRef.current.setAttribute('src', isVaild); 
         window.alert('프로필 이미지가 저장되었습니다!.');
     };
 
     useEffect(() => {  // 페이지가 로드 되자마자, localStorage에서 img데이터를 가져와서 존재할경우만 img요소 src에 imURL을 넣어준다.  
-       profile = localStorage.getItem('profile'); 
-       if(profile == 'undefined'){
-        
-       } else { imgRef.current.setAttribute('src', JSON.parse(profile)); }
-      
+       const profile = localStorage.getItem('profile');   // 다시 localStorage에서 img데이터 꺼내와서 변수에 저장해준다.
+       const isVaild = JSON.parse(profile);
 
-    }, [profile]);
+       if(isVaild){  // 저장된 이미지가 있을때
+          imgRef.current.setAttribute('src', isVaild); 
+       } else {  }      
+
+    }, []);
 
      
     return (
