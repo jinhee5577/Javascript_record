@@ -1,3 +1,13 @@
+// CORS란?
+// 간단히 말하자면 서로 다른 출처(Origin) 간에 리소스를 전달하는 방식을 제어하는 체제이며, 
+// CORS 요청이 가능하려면 서버에서 특정 헤더인 Access-Control-Allow-Origin과 함께 응답할 필요가 있다.
+// 예를 들어 클라이언트 포트가 3000번이고 서버 포트가 8000번일 때 클라이언트에서 서버로 리소스를 
+// 요청했을때 CORS 에러 메시지가 클라이언트 콘솔에 빨갛게 뜨고 데이터를 주지 않게 된다. 
+// 그래서 동일한 출처에서 리소스를 요청하면 된다.
+
+
+
+// 클라이언트: http-proxy-middleware 사용하기
 // 만약 open API 요청시 발생할수 있는 CORS이슈 해결방법중 하나인  http-proxy-middleware 를 만들어 해결.
 // 1). npm i http-proxy-middleware -D 를 이용하여 라이브러리를 설치한다.   
 // 2). 프로젝트 내 src폴더 내에 setupProxy.js 파일 하나만듬.
