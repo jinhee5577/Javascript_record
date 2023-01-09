@@ -1,12 +1,13 @@
 // 만약 open API 요청시 발생할수 있는 CORS이슈 해결방법중 하나인  http-proxy-middleware 를 만들어 해결.
-// 1). 프로젝트 내 src폴더 내에 setupProxy.js 파일 하나만듬.
-// 2). setupProxy.js 내에 이렇게 작성
+// 1). npm i http-proxy-middleware -D 를 이용하여 라이브러리를 설치한다.   
+// 2). 프로젝트 내 src폴더 내에 setupProxy.js 파일 하나만듬.
+// 3). setupProxy.js 내에 아래코드 처럼작성.
 
 
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
 module.exports = function (app) {
-  app.use(
+  app.use(   // setupProxy파일에서 이 프로젝트 내에서 타겟주소를 String 변수 '/api'로 사용하겠다고 설정한다.
     '/api',   // /api로 시작하는 경로일 경우
     createProxyMiddleware({
       target: 'https://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json',   // 요청 url 앞에 target을 붙여주기
@@ -31,3 +32,6 @@ let featch_hansan = async () => {
         console.log(error);
     }    
 }; 
+
+
+// 이렇게 작성해준다면 cors error를 해결할 수 있다.
